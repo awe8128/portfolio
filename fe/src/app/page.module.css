@@ -5,9 +5,8 @@
 
 .section {
   min-height: 100vh;
-  padding: 80px 0;
-  border-bottom: 1px solid rgb(255, 255, 255);
-  color: black;
+  padding: 120px 0;
+  color: black
 }
 
 .motto {
@@ -28,6 +27,7 @@
   word-spacing: -2px;
   user-select: none;
   text-align: center;
+  margin-top: 140px;
 }
 
 
@@ -104,7 +104,10 @@
 }
 
 .about {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  position: relative;
 }
 
 .wrapper {
@@ -112,7 +115,36 @@
   grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  min-height: 600px;
+  width: 90%;
+  position: relative; 
+  z-index: 1; 
+
+}
+
+.logoCloud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* THIS is what GSAP is animating */
+.logo {
+  width: 56px;
+  height: 56px;
+  display: inline-block; /* important for transform */
+}
+
+/* inside can be img or svg, both okay */
+.logo svg,
+.logo :global(img) {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
 }
 
 .item {
@@ -128,118 +160,42 @@
 }
 
 .wrapper > .item:nth-child(2) {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .name {
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .wrapper > .item:nth-child(3) {
   align-items: center;
 }
 
+.wrapper > .item:nth-child(4){
+  display: flex;
+  justify-content: space-between;
+}
+
 .img {
   z-index: 1;
 }
 
-.rollingTextSection {
-  padding-bottom: 120px;
-  gap: 32px;
+.hoverImg{
+  position: relative;
+  left: 30px;
 }
 
-.rollingTextSection p {
-  opacity: 0;
+.hoverP{
+  z-index: 99;
+  position: absolute;
+  font-style: oblique;
+
 }
 
-.videoWrap {
-  margin-top: 48px;
-  width: min(760px, 90vw);
-}
-
-.videoPlaceholder {
-  border-radius: 32px;
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.85rem;
-  color: white;
-  background: radial-gradient(circle at 20% 20%, #6b73ff, #000428);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-.circleBlock {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circleContent {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+.hoverMe {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-}
-
-.flipSection {
-  text-align: center;
-}
-
-.flipSection p {
-  margin-bottom: 32px;
-}
-
-.flipGallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.thumbnail,
-.fullSize {
-  min-height: 240px;
-  border-radius: 32px;
-  padding: 32px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  font-size: 1.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail {
-  flex: 1;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.fullSize {
-  flex: 2;
-  background: linear-gradient(135deg, #020024 0%, #5b2be0 100%);
-  color: white;
-}
-
-:global(.thumbnail),
-:global(.full-size) {
-  border-radius: 32px;
-}
-
-:global(.thumbnail.active),
-:global(.full-size.active) {
-  transform: scale(1.05);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  margin-top: 120px;
 }

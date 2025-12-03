@@ -11,7 +11,7 @@ type NavbarProps = {
 const navItems = [
   { label: "About me", target: "#about" },
   { label: "Works", target: "#works" },
-  { label: "Skills", target: "#skills" },
+  { label: "Personal", target: "#personal" },
   { label: "Contact", target: "#contact" },
 ];
 
