@@ -6,8 +6,7 @@
 .section {
   min-height: 100vh;
   padding: 80px 0;
-  border-bottom: 1px solid rgb(255, 255, 255);
-  color: black;
+  color: black
 }
 
 .motto {
@@ -28,6 +27,7 @@
   word-spacing: -2px;
   user-select: none;
   text-align: center;
+  margin-top: 140px;
 }
 
 
@@ -104,7 +104,10 @@
 }
 
 .about {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  position: relative;
 }
 
 .wrapper {
@@ -112,7 +115,36 @@
   grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  min-height: 600px;
+  width: 90%;
+  position: relative; 
+  z-index: 1; 
+
+}
+
+.logoCloud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* THIS is what GSAP is animating */
+.logo {
+  width: 56px;
+  height: 56px;
+  display: inline-block; /* important for transform */
+}
+
+/* inside can be img or svg, both okay */
+.logo svg,
+.logo :global(img) {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
 }
 
 .item {
@@ -127,119 +159,253 @@
   border-left: none;
 }
 
+.hello{
+  font-size: 45px;
+}
+.more{
+  position: relative;
+  font-style: italic;
+  text-decoration: underline;
+}
 .wrapper > .item:nth-child(2) {
-  font-size: 50px;
+  display: flex;
+  justify-content: space-evenly;
+
 }
 
 .name {
-  font-size: 50px;
+  font-size: 30px;
+ 
 }
 
 .wrapper > .item:nth-child(3) {
   align-items: center;
 }
 
+.wrapper > .item:nth-child(4){
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .img {
   z-index: 1;
 }
-
-.rollingTextSection {
-  padding-bottom: 120px;
-  gap: 32px;
+.img:hover{
+  background-color: red;
 }
 
-.rollingTextSection p {
-  opacity: 0;
+.hoverImg{
+  position: relative;
+  left: 30px;
 }
 
-.videoWrap {
-  margin-top: 48px;
-  width: min(760px, 90vw);
+.hoverP{
+  z-index: 99;
+  position: absolute;
+  font-style: oblique;
+
 }
 
-.videoPlaceholder {
-  border-radius: 32px;
-  min-height: 360px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.85rem;
-  color: white;
-  background: radial-gradient(circle at 20% 20%, #6b73ff, #000428);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-.circleBlock {
-  min-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circleContent {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+.hoverMe {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
+  margin-top: 120px;
 }
 
-.flipSection {
-  text-align: center;
-}
-
-.flipSection p {
-  margin-bottom: 32px;
-}
-
-.flipGallery {
+.contactSection {
+  padding: 64px clamp(24px, 7vw, 96px);
+  background-color: #ffffff;
+  color: #202020;
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.thumbnail,
-.fullSize {
-  min-height: 240px;
-  border-radius: 32px;
-  padding: 32px;
-  display: flex;
-  align-items: flex-end;
+  flex-direction: column;
   justify-content: flex-start;
-  font-size: 1.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: clamp(48px, 8vh, 80px);
 }
 
-.thumbnail {
-  flex: 1;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+/* top layout ---------------------------------------------------- */
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: clamp(40px, 8vw, 120px);
 }
 
-.fullSize {
-  flex: 2;
-  background: linear-gradient(135deg, #020024 0%, #5b2be0 100%);
-  color: white;
+.leftBlock {
+  max-width: 320px;
 }
 
-:global(.thumbnail),
-:global(.full-size) {
-  border-radius: 32px;
+.lead {
+  font-size: clamp(1.4rem, 2.1vw, 1.8rem);
+  line-height: 1.4;
+  margin-bottom: 24px;
 }
 
-:global(.thumbnail.active),
-:global(.full-size.active) {
-  transform: scale(1.05);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+.italic {
+  font-style: italic;
+}
+
+/* button -------------------------------------------------------- */
+
+.emailButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.emailButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: #000000;
+}
+
+.emailArrow {
+  display: inline-block;
+  transform: translateY(1px);
+}
+
+/* right columns ------------------------------------------------- */
+
+.rightBlock {
+  display: flex;
+  gap: clamp(40px, 6vw, 80px);
+  font-size: 0.9rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.columnTitle {
+  font-size: 0.9rem;
+  color: #8d949c;
+  margin-bottom: 6px;
+}
+
+.linkLike {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: #111111;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.linkLike::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #111111;
+  transition: width 0.2s ease;
+}
+
+.linkLike:hover::after {
+  width: 100%;
+}
+
+.emailLink {
+  color: #111111;
+  text-decoration: none;
+  position: relative;
+}
+
+.emailLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: #111111;
+  transition: width 0.2s ease;
+}
+
+.emailLink:hover::after {
+  width: 100%;
+}
+
+.flair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  filter: blur(40px);
+  background:
+    radial-gradient(circle at 20% 20%, #ff9a9e 0, transparent 55%),
+    radial-gradient(circle at 80% 30%, #fad0c4 0, transparent 55%),
+    radial-gradient(circle at 30% 80%, #fbc2eb 0, transparent 55%);
+}
+
+/* brand word ---------------------------------------------------- */
+
+.brandRow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 0;
+  margin-top: clamp(48px, 10vh, 96px);
+}
+
+.brand {
+  font-size: clamp(3.5rem, 11vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden; /* so letters can slide from below */
+}
+
+/* each letter is animated with GSAP */
+.letter {
+  display: inline-block;
+}
+
+/* responsive tweaks --------------------------------------------- */
+
+@media (max-width: 900px) {
+  .topRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rightBlock {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactSection {
+    padding-inline: 20px;
+  }
+
+  .brand {
+    letter-spacing: 0.16em;
+  }
 }

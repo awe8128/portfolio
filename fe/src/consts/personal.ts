@@ -1,0 +1,80 @@
+import { CaseItem } from "./work";
+
+export const PersonalCases: CaseItem[] = [
+  {
+    id: 1,
+    title: "BOB",
+    subtitle: "新卒サポートAgent",
+    what: "対象: 新卒向け",
+    image: "/agentv1.png",
+    variant: "wide",
+    type: "image",
+    meta: [
+      "Golang",
+      "Next.js",
+      "GPT4.1",
+      "RAG",
+      "DDD",
+      "POSTGRES",
+      "ON PROGRESS",
+    ],
+    role: "担当: 新規開発",
+    goal: "目標: 8月までにリリース",
+    achivement:
+      "背景：求人サイトには情報が多く、自分に合っている求人がどれなのか分かりにくい。また、何を基準に選べばいいのかも分からない。",
+    description:
+      "就活の「情報過多」「選択の難しさ」「自分の強み・適性の不明確さ」を同時に解消するには、相談相手が必要となり、意思決定を支える統合型キャリア・コパイロットを目指している。",
+  },
+  {
+    id: 2,
+    title: "arch-gen",
+    subtitle: "go-tools",
+    what: "対象: 個人向け",
+    variant: "normal",
+    image: "/gotools.png",
+    type: "image",
+    meta: ["Golang", "YAML", "go-tools", "Docker", "Automation", "ON PROGRESS"],
+    goal: "目標: カスタムgo-toolsの作成",
+    achivement: "私は仕事と個人で、Go言語を使った開発に携わってきました",
+    description:
+      "環境構築には想像以上の工数がかかるためシステムデザイン全体を生成するGo toolsを作成する",
+  },
+  {
+    id: 3,
+    title: "ペット用首輪",
+    subtitle: "PAWS REEL",
+    what: "対象: ペット持ち主",
+    image: "/cat.png",
+    variant: "normal",
+    type: "image",
+    meta: ["Blender", "3D model", "Next.js", "GSAP", "Golang", "Postgres"],
+    role: "目標: カメラを搭載した首輪の販売サイト",
+    goal: "",
+    achivement:
+      "成果: 複数の記事からエンジニアブログに載る記事として厳選された",
+    description: "https://engineerblog.mynavi.jp",
+  },
+  {
+    id: 4,
+    title: "#1 Mini ECS/Fargate for personal tasks",
+    subtitle: "KajiCloud",
+    what: "対象: 個人向け",
+    variant: "wide",
+    type: "image",
+    image: "/miniEcs.png",
+    meta: [
+      "Golang",
+      "DevOps",
+      "Mini AWS",
+      "OpenAPI",
+      "POSTGRES",
+      "Next.js",
+      "ON PROGRESS",
+    ],
+    role: "概要: ミニAWSのサーバーレス",
+    goal: "目標: 新規立ち上げ",
+    achivement:
+      "現状: DB設計, システム設計, API設計が完了。バックエンドの実装中",
+    description: "目標: AWSようなサービスの実装と学習",
+  },
+];
