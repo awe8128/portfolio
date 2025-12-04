@@ -4,12 +4,6 @@
 }
 
 .section {
-.main {
-  margin: 0 auto;
-  padding: 96px 16px 120px;
-}
-
-.section {
   min-height: 100vh;
   padding: 120px 0;
   color: black
@@ -21,10 +15,8 @@
   align-items: center;
   justify-content: center;
   min-height: 85vh;
-  min-height: 85vh;
 }
 
-.hero {
 .hero {
   display: flex;
   flex-direction: column;
@@ -98,20 +90,6 @@
 }
 
 .description {
-.build:hover .buildInner {
-  transform: translateY(-100%);
-}
-
-.build:hover::after {
-  transform: translateY(0%);
-}
-
-.build:hover::before {
-  transform: scaleX(0);
-  transform-origin: right center;
-}
-
-.description {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,19 +125,7 @@
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.85rem;
-  color: white;
-  background: radial-gradient(circle at 20% 20%, #6b73ff, #000428);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-.circleBlock {
-  min-height: 80vh;
-  display: flex;
   align-items: center;
   gap: 24px;
   pointer-events: none;
@@ -193,12 +159,23 @@
   border-left: none;
 }
 
+.hello{
+  font-size: 45px;
+}
+.more{
+  position: relative;
+  font-style: italic;
+  text-decoration: underline;
+}
 .wrapper > .item:nth-child(2) {
-  font-size: 30px;
+  display: flex;
+  justify-content: space-evenly;
+
 }
 
 .name {
   font-size: 30px;
+ 
 }
 
 .wrapper > .item:nth-child(3) {
@@ -208,10 +185,14 @@
 .wrapper > .item:nth-child(4){
   display: flex;
   justify-content: space-between;
+
 }
 
 .img {
   z-index: 1;
+}
+.img:hover{
+  background-color: red;
 }
 
 .hoverImg{

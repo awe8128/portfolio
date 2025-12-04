@@ -1,16 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-("use client");
-
-import { useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { Flip } from "gsap/Flip";
-import { useGSAP } from "@gsap/react";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -23,6 +14,7 @@ import CasesSection from "@/components/caseStudies/studies";
 import { WorkCases } from "@/consts/work";
 import { PersonalCases } from "@/consts/personal";
 import Parallel from "@/components/parallelText/parallel";
+import { style } from "framer-motion/client";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Flip);
 
@@ -61,7 +53,7 @@ export default function HomePage() {
         const logos = gsap.utils.toArray<HTMLElement>(`.${styles.logo}`);
         // Start hidden, below and small
         gsap.set(logos, {
-          y: 80,
+          y: 150,
           opacity: 0,
           scale: 0.6,
         });
@@ -70,18 +62,22 @@ export default function HomePage() {
         const tl = gsap.timeline({ paused: true });
 
         tl.to(logos, {
-          y: -400,
+          y: (i) => {
+            const baseY = -450; // main height where the "row" sits
+            const offset = 60; // how far up/down from that row
+            return i % 2 === 0 ? baseY - offset : baseY + offset;
+          },
           opacity: 1,
-          scale: 2.5,
-          duration: 2,
-          rotate: -4,
+          scale: 1.6,
+          duration: 1.5,
+          rotate: (i) => (i % 2 === 0 ? -6 : 6),
           ease: "power3.out",
           stagger: {
             each: 0.08,
-            from: "center",
+            from: "edges",
           },
           // small spread on X
-          x: (i) => (i - (logos.length - 1) / 2) * 100,
+          x: (i) => (i - (logos.length - 1) / 2) * 80,
         });
 
         logoTimelineRef.current = tl;
@@ -91,11 +87,8 @@ export default function HomePage() {
           trigger: aboutRef.current,
           start: "top bottom", // when section enters from bottom
           end: "top center", // while it's in view
-          onLeaveBack: () => logoTimelineRef.current?.reverse(),
         });
       }, aboutRef);
-
-      return () => ctx.revert();
     },
     { scope: aboutRef }
   );
@@ -154,26 +147,90 @@ export default function HomePage() {
                   />
                 </span>
                 <span className={styles.logo}>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <rect x="10" y="10" width="44" height="44" rx="8" />
-                  </svg>
+                  <Image
+                    src="/docker.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
                 </span>
                 <span className={styles.logo}>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <polygon points="10,50 32,10 54,50" />
-                  </svg>
+                  <Image
+                    src="/aws.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
                 </span>
                 <span className={styles.logo}>
-                  <svg viewBox="0 0 64 64" aria-hidden="true">
-                    <circle cx="24" cy="24" r="10" />
-                    <circle cx="40" cy="40" r="10" />
-                  </svg>
+                  <Image
+                    src="/nextjs.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/mysql.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/python.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/github.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/js.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/react.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <Image
+                    src="/redis.svg"
+                    width={400}
+                    height={100}
+                    alt="Picture of golang programming language"
+                  />
                 </span>
               </div>
               <div className={styles.wrapper}>
                 <div className={styles.item}></div>
                 <div className={styles.item}>
-                  <p>Hello</p>
+                  <p className={styles.hello}>Hello</p>
+                  <br></br>
+
+                  <p>
+                    You can call Alex <br></br>
+                    <br></br>I am proactive person who loves challenges and gym
+                    also good book.
+                  </p>
+                  <p></p>
                 </div>
 
                 <div className={styles.item}>
@@ -189,10 +246,11 @@ export default function HomePage() {
                 <div className={styles.item}>
                   <p className={styles.name}>I’m OIDOV ANKHBAYAR</p>
                   <p>
-                    Web Developer Engineer Graduated Chiba University Born
-                    raised in Mongolia, Ulaanbaatar
+                    I came to Japan in 2017. <br></br>I studied Mechanical
+                    Engineering for 5 years. <br />I graduated Chiba University
+                    in 2024. Started my career as software engineering at Tokyo.
                   </p>
-                  <p>More from here</p>
+                  <p className={styles.more}>More about my recent works</p>
                 </div>
                 <div className={styles.item}></div>
               </div>
