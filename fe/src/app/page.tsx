@@ -14,7 +14,6 @@ import CasesSection from "@/components/caseStudies/studies";
 import { WorkCases } from "@/consts/work";
 import { PersonalCases } from "@/consts/personal";
 import Parallel from "@/components/parallelText/parallel";
-import { style } from "framer-motion/client";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Flip);
 
