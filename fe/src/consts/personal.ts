@@ -37,7 +37,7 @@ export const PersonalCases: CaseItem[] = [
     goal: "目標: カスタムgo-toolsの作成",
     achivement: "私は仕事と個人で、Go言語を使った開発に携わってきました",
     description:
-      "環境構築には想像以上の工数がかかっていることが多い。そこで、システムデザイン全体を生成するGo toolsを作成することにした。",
+      "環境構築には想像以上の工数がかかるためシステムデザイン全体を生成するGo toolsを作成する",
   },
   {
     id: 3,

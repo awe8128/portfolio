@@ -47,7 +47,7 @@ export const WorkCases: CaseItem[] = [
     goal: "目標: 生産量は向上",
     achivement: "成果: 会社全体にPlaywright MCPの導入を実現",
     description:
-      "個人情報を扱う企業として、情報漏れを常に意識した上で、AI Agentに挑戦し、安全に使える仕組みや方法を検討し、上部に提案",
+      "個人情報漏れを常に意識した上で、AI Agentを安全に使える仕組みや方法を検討と提案",
   },
   {
     id: 3,

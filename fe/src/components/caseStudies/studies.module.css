@@ -62,7 +62,8 @@
     width: 50%;
   }
   .detail p{
-    padding: 3px 3px 3px 3px
+    padding: 3px 3px 3px 3px;
+    font-size: 1em;
   }
   
   
