@@ -4,10 +4,15 @@
 }
 
 .section {
+.main {
+  margin: 0 auto;
+  padding: 96px 16px 120px;
+}
+
+.section {
   min-height: 100vh;
-  padding: 80px 0;
-  border-bottom: 1px solid rgb(255, 255, 255);
-  color: black;
+  padding: 120px 0;
+  color: black
 }
 
 .motto {
@@ -16,8 +21,10 @@
   align-items: center;
   justify-content: center;
   min-height: 85vh;
+  min-height: 85vh;
 }
 
+.hero {
 .hero {
   display: flex;
   flex-direction: column;
@@ -28,6 +35,7 @@
   word-spacing: -2px;
   user-select: none;
   text-align: center;
+  margin-top: 140px;
 }
 
 
@@ -90,6 +98,20 @@
 }
 
 .description {
+.build:hover .buildInner {
+  transform: translateY(-100%);
+}
+
+.build:hover::after {
+  transform: translateY(0%);
+}
+
+.build:hover::before {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+.description {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,7 +126,10 @@
 }
 
 .about {
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  position: relative;
 }
 
 .wrapper {
@@ -112,54 +137,15 @@
   grid-template-columns: repeat(5, 1fr);
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  min-height: 600px;
+  width: 90%;
+  position: relative; 
+  z-index: 1; 
+
 }
 
-.item {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border-left: 1px solid #ddd;
-  font-size: 14px;
-}
-
-.wrapper > .item:first-of-type {
-  border-left: none;
-}
-
-.wrapper > .item:nth-child(2) {
-  font-size: 50px;
-}
-
-.name {
-  font-size: 50px;
-}
-
-.wrapper > .item:nth-child(3) {
-  align-items: center;
-}
-
-.img {
-  z-index: 1;
-}
-
-.rollingTextSection {
-  padding-bottom: 120px;
-  gap: 32px;
-}
-
-.rollingTextSection p {
-  opacity: 0;
-}
-
-.videoWrap {
-  margin-top: 48px;
-  width: min(760px, 90vw);
-}
-
-.videoPlaceholder {
-  border-radius: 32px;
-  min-height: 360px;
+.logoCloud {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,71 +161,75 @@
   min-height: 80vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 24px;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.circleContent {
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+/* THIS is what GSAP is animating */
+.logo {
+  width: 56px;
+  height: 56px;
+  display: inline-block; /* important for transform */
+}
+
+/* inside can be img or svg, both okay */
+.logo svg,
+.logo :global(img) {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.item {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  border-left: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.wrapper > .item:first-of-type {
+  border-left: none;
+}
+
+.wrapper > .item:nth-child(2) {
+  font-size: 30px;
+}
+
+.name {
+  font-size: 30px;
+}
+
+.wrapper > .item:nth-child(3) {
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
 }
 
-.flipSection {
-  text-align: center;
-}
-
-.flipSection p {
-  margin-bottom: 32px;
-}
-
-.flipGallery {
+.wrapper > .item:nth-child(4){
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-  cursor: pointer;
+  justify-content: space-between;
 }
 
-.thumbnail,
-.fullSize {
-  min-height: 240px;
-  border-radius: 32px;
-  padding: 32px;
+.img {
+  z-index: 1;
+}
+
+.hoverImg{
+  position: relative;
+  left: 30px;
+}
+
+.hoverP{
+  z-index: 99;
+  position: absolute;
+  font-style: oblique;
+
+}
+
+.hoverMe {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  font-size: 1.25rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail {
-  flex: 1;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.fullSize {
-  flex: 2;
-  background: linear-gradient(135deg, #020024 0%, #5b2be0 100%);
-  color: white;
-}
-
-:global(.thumbnail),
-:global(.full-size) {
-  border-radius: 32px;
-}
-
-:global(.thumbnail.active),
-:global(.full-size.active) {
-  transform: scale(1.05);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
 }

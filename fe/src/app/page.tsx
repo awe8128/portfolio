@@ -1,7 +1,16 @@
 "use client";
 
 import { useRef } from "react";
+("use client");
+
+import { useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { Flip } from "gsap/Flip";
+import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -10,6 +19,10 @@ import { useGSAP } from "@gsap/react";
 
 import styles from "./page.module.css";
 import Navbar from "@/components/navbar/Navbar";
+import CasesSection from "@/components/caseStudies/studies";
+import { WorkCases } from "@/consts/work";
+import { PersonalCases } from "@/consts/personal";
+import Parallel from "@/components/parallelText/parallel";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Flip);
 
@@ -17,6 +30,8 @@ export default function HomePage() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const smootherRef = useRef<ScrollSmoother | null>(null);
 
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const logoTimelineRef = useRef<gsap.core.Timeline | null>(null);
   useGSAP(
     () => {
       ScrollTrigger.normalizeScroll(true);
@@ -36,6 +51,53 @@ export default function HomePage() {
       };
     },
     { scope: wrapperRef }
+  );
+
+  useGSAP(
+    () => {
+      if (!aboutRef.current) return;
+
+      const ctx = gsap.context(() => {
+        const logos = gsap.utils.toArray<HTMLElement>(`.${styles.logo}`);
+        // Start hidden, below and small
+        gsap.set(logos, {
+          y: 80,
+          opacity: 0,
+          scale: 0.6,
+        });
+
+        // Timeline that plays on hover and reverses on scroll back
+        const tl = gsap.timeline({ paused: true });
+
+        tl.to(logos, {
+          y: -400,
+          opacity: 1,
+          scale: 2.5,
+          duration: 2,
+          rotate: -4,
+          ease: "power3.out",
+          stagger: {
+            each: 0.08,
+            from: "center",
+          },
+          // small spread on X
+          x: (i) => (i - (logos.length - 1) / 2) * 100,
+        });
+
+        logoTimelineRef.current = tl;
+
+        // ScrollTrigger: when user scrolls back above "about", hide logos again
+        ScrollTrigger.create({
+          trigger: aboutRef.current,
+          start: "top bottom", // when section enters from bottom
+          end: "top center", // while it's in view
+          onLeaveBack: () => logoTimelineRef.current?.reverse(),
+        });
+      }, aboutRef);
+
+      return () => ctx.revert();
+    },
+    { scope: aboutRef }
   );
 
   const handleNavClick = (target: string) => {
@@ -70,20 +132,58 @@ export default function HomePage() {
           </section>
 
           <section id="about" className={styles.section}>
-            <h2>About me</h2>
-            <div className={styles.about}>
+            <div className={styles.hoverMe}>
+              <p className={styles.hoverP}>Hi, wanna see magic ? Hover me</p>
+              <Image
+                className={styles.hoverImg}
+                src="/thought.jpeg"
+                width={450}
+                height={150}
+                alt="Picture of think bubble"
+              />
+            </div>
+
+            <div className={styles.about} ref={aboutRef}>
+              <div className={styles.logoCloud}>
+                <span className={styles.logo}>
+                  <Image
+                    src="/go.svg"
+                    width={450}
+                    height={150}
+                    alt="Picture of golang programming language"
+                  />
+                </span>
+                <span className={styles.logo}>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <rect x="10" y="10" width="44" height="44" rx="8" />
+                  </svg>
+                </span>
+                <span className={styles.logo}>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <polygon points="10,50 32,10 54,50" />
+                  </svg>
+                </span>
+                <span className={styles.logo}>
+                  <svg viewBox="0 0 64 64" aria-hidden="true">
+                    <circle cx="24" cy="24" r="10" />
+                    <circle cx="40" cy="40" r="10" />
+                  </svg>
+                </span>
+              </div>
               <div className={styles.wrapper}>
                 <div className={styles.item}></div>
                 <div className={styles.item}>
                   <p>Hello</p>
                 </div>
+
                 <div className={styles.item}>
                   <Image
                     className={styles.img}
                     src="/alex.jpg"
-                    width={300}
-                    height={500}
+                    width={220}
+                    height={400}
                     alt="Picture of the author"
+                    onMouseEnter={() => logoTimelineRef.current?.play()}
                   />
                 </div>
                 <div className={styles.item}>
@@ -92,6 +192,7 @@ export default function HomePage() {
                     Web Developer Engineer Graduated Chiba University Born
                     raised in Mongolia, Ulaanbaatar
                   </p>
+                  <p>More from here</p>
                 </div>
                 <div className={styles.item}></div>
               </div>
@@ -99,13 +200,13 @@ export default function HomePage() {
           </section>
 
           <section id="works" className={styles.section}>
-            <h2>Works</h2>
-            <p>Show your projects here…</p>
+            <CasesSection cases={WorkCases} type="work" />
           </section>
 
-          <section id="skills" className={styles.section}>
-            <h2>Skills</h2>
-            <p>List your skills & tech stack…</p>
+          <Parallel />
+
+          <section id="personal" className={styles.section}>
+            <CasesSection cases={PersonalCases} type="personal" />
           </section>
 
           <section id="contact" className={styles.section}>

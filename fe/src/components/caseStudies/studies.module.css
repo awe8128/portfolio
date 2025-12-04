@@ -1,0 +1,172 @@
+.section {
+    padding: 4rem 5vw 5rem;
+    background: #f5f3ef;
+    color: #111;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  
+  .linkBtn {
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  
+  .linkBtn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+  
+
+  /* ========== GRID ========== */
+  
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-auto-flow: dense;
+    grid-auto-rows: 300px;
+    grid-template-columns: repeat(auto-fit, minmax(250, 1fr));
+  }
+  
+  .card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  
+  .cardInner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .detail{
+    width: 50%;
+  }
+  .detail p{
+    padding: 3px 3px 3px 3px
+  }
+  
+  
+  /* Variants (control how many rows/columns each card spans) */
+  
+  .cardWide {
+    grid-column: span 4;
+  }
+  
+  .cardNormal {
+    grid-column: span 2;
+  }
+  
+  
+  /* ensure tall cards look ok on narrow screens */
+  @media (max-width: 800px) {
+    .cardWide,
+    .cardTall {
+      grid-column: span 1;
+      grid-row: span 1;
+      min-height: 240px;
+    }
+  }
+  
+  /* ========== SHARED CONTENT STYLES ========== */
+  
+  .image {
+    object-fit: cover;
+    transition: filter 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
+  }
+  
+  .card:hover .image {
+    filter: blur(6px) brightness(0.7);
+    transform: scale(1.05);
+  }
+  .cardContent {
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    height: 100%;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none; 
+  }
+  
+  .overview{
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 15px;
+  }
+
+  .card:hover .cardContent {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .cardMeta {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    opacity: 0.8;
+    letter-spacing: 0.08em;
+    max-width: 100%;
+    
+  }
+  .cardMeta div{
+    border: 1px solid #ffffff;
+    padding: 0.5rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    flex-shrink: 0; 
+  }
+  
+  
+  .cardLabel {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  
+  .cardLabel span {
+    font-style: italic;
+    font-weight: 300;
+  }
+  
+
+  
+  @media (max-width: 600px) {
+    .section {
+      padding: 2.5rem 1.5rem 3rem;
+    }
+  
+    .title {
+      font-size: 2.1rem;
+    }
+  
+  }
+  
