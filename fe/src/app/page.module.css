@@ -5,7 +5,7 @@
 
 .section {
   min-height: 100vh;
-  padding: 120px 0;
+  padding: 80px 0;
   color: black
 }
 
@@ -344,6 +344,24 @@
   width: 100%;
 }
 
+.flair {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 999;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  filter: blur(40px);
+  background:
+    radial-gradient(circle at 20% 20%, #ff9a9e 0, transparent 55%),
+    radial-gradient(circle at 80% 30%, #fad0c4 0, transparent 55%),
+    radial-gradient(circle at 30% 80%, #fbc2eb 0, transparent 55%);
+}
+
 /* brand word ---------------------------------------------------- */
 
 .brandRow {
@@ -355,7 +373,7 @@
 }
 
 .brand {
-  font-size: clamp(3.5rem, 15vw, 10rem);
+  font-size: clamp(3.5rem, 11vw, 10rem);
   line-height: 0.9;
   letter-spacing: 0.2em;
   font-weight: 500;

@@ -42,7 +42,7 @@
     gap: 1.5rem;
     grid-auto-flow: dense;
     grid-auto-rows: 300px;
-    grid-template-columns: repeat(auto-fit, minmax(250, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200, 1fr));
   }
   
   .card {
@@ -62,7 +62,8 @@
     width: 50%;
   }
   .detail p{
-    padding: 3px 3px 3px 3px
+    padding: 3px 3px 3px 3px;
+    font-size: 1em;
   }
   
   

@@ -17,12 +17,18 @@ import Parallel from "@/components/parallelText/parallel";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, Flip);
 
+const BRAND_TEXT = "アンフバヤル";
+
 export default function HomePage() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const smootherRef = useRef<ScrollSmoother | null>(null);
 
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const logoTimelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  const contactRef = useRef<HTMLElement | null>(null);
+  const flairRef = useRef<HTMLDivElement | null>(null);
+
   useGSAP(
     () => {
       ScrollTrigger.normalizeScroll(true);
@@ -91,7 +97,70 @@ export default function HomePage() {
     },
     { scope: aboutRef }
   );
+  useGSAP(
+    () => {
+      if (!contactRef.current) return;
 
+      // Scope the query to the contact section
+      const letters = contactRef.current.querySelectorAll<HTMLElement>(
+        `.${styles.letter}`
+      );
+      if (!letters.length) return;
+
+      // Initial state: hidden & below
+      gsap.set(letters, {
+        y: "120%",
+        opacity: 0,
+      });
+
+      // Animate only when the contact section scrolls into view
+      ScrollTrigger.create({
+        trigger: contactRef.current,
+        start: "top 75%", // adjust if you want earlier/later
+        once: true, // only run the animation once
+        onEnter: () => {
+          gsap.to(letters, {
+            y: "0%",
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.08,
+          });
+        },
+      });
+    },
+    { scope: contactRef }
+  );
+
+  useGSAP(
+    () => {
+      if (!flairRef.current) return;
+
+      // center the flair on its x/y
+      gsap.set(flairRef.current, { xPercent: -50, yPercent: -50 });
+
+      const xTo = gsap.quickTo(flairRef.current, "x", {
+        duration: 0.6,
+        ease: "power3",
+      });
+      const yTo = gsap.quickTo(flairRef.current, "y", {
+        duration: 0.6,
+        ease: "power3",
+      });
+
+      const moveHandler = (e: MouseEvent) => {
+        xTo(e.clientX);
+        yTo(e.clientY);
+      };
+
+      window.addEventListener("mousemove", moveHandler);
+
+      return () => {
+        window.removeEventListener("mousemove", moveHandler);
+      };
+    },
+    { scope: wrapperRef }
+  );
   const handleNavClick = (target: string) => {
     if (!smootherRef.current) return;
     smootherRef.current.scrollTo(target, true, "top top");
@@ -100,9 +169,9 @@ export default function HomePage() {
   return (
     <div id="smooth-wrapper" ref={wrapperRef}>
       <div id="smooth-content">
+        <div className={styles.flair} ref={flairRef} />
         <div id="top" />
         <Navbar onNavClick={handleNavClick} />
-
         <main className={styles.main}>
           <section className={styles.section}>
             <div className={styles.hero}>
@@ -266,9 +335,54 @@ export default function HomePage() {
             <CasesSection cases={PersonalCases} type="personal" />
           </section>
 
-          <section id="contact" className={styles.section}>
-            <h2>Contact</h2>
-            <p>Contact info or form…</p>
+          <section
+            id="contact"
+            className={styles.contactSection}
+            ref={contactRef}
+          >
+            <div className={styles.topRow}>
+              <div className={styles.leftBlock}>
+                <p className={styles.lead}>
+                  Create <span className={styles.italic}>Value</span>
+                  <br />
+                  Build Awesome Services
+                </p>
+
+                <button className={styles.emailButton}>
+                  <span>Made with love</span>
+                  <span className={styles.emailArrow}></span>
+                </button>
+              </div>
+
+              <div className={styles.rightBlock}>
+                <div className={styles.column}>
+                  <p className={styles.columnTitle}>Menu</p>
+                  <a className={styles.linkLike} href="">
+                    Top
+                  </a>
+                </div>
+
+                <div className={styles.column}>
+                  <p className={styles.columnTitle}>Contact</p>
+                  <a
+                    href="mailto:dailywork8128@gmail.com"
+                    className={styles.emailLink}
+                  >
+                    dailywork8128@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.brandRow}>
+              <h2 className={styles.brand} aria-label={BRAND_TEXT}>
+                {BRAND_TEXT.split("").map((ch, idx) => (
+                  <span key={idx} className={styles.letter}>
+                    {ch}
+                  </span>
+                ))}
+              </h2>
+            </div>
           </section>
         </main>
       </div>
