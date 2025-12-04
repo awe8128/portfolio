@@ -147,6 +147,7 @@
   opacity: 1;
 }
 
+
 .item {
   display: flex;
   flex-direction: column;
@@ -159,12 +160,23 @@
   border-left: none;
 }
 
+.hello{
+  font-size: 45px;
+}
+.more{
+  position: relative;
+  font-style: italic;
+  text-decoration: underline;
+}
 .wrapper > .item:nth-child(2) {
-  font-size: 30px;
+  display: flex;
+  justify-content: space-evenly;
+
 }
 
 .name {
   font-size: 30px;
+ 
 }
 
 .wrapper > .item:nth-child(3) {
@@ -174,10 +186,14 @@
 .wrapper > .item:nth-child(4){
   display: flex;
   justify-content: space-between;
+
 }
 
 .img {
   z-index: 1;
+}
+.img:hover{
+  background-color: red;
 }
 
 .hoverImg{

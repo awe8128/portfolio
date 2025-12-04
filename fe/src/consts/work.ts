@@ -11,7 +11,7 @@ export type CaseItem = {
   variant: CaseVariant;
   type: CaseType;
   meta: string[];
-  role: string;
+  role?: string;
   goal: string;
   achivement: string;
   description: string;
