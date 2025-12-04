@@ -1,7 +1,16 @@
 "use client";
 
 import { useRef } from "react";
+("use client");
+
+import { useRef } from "react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { Flip } from "gsap/Flip";
+import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
