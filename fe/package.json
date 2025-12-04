@@ -12,12 +12,10 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@motionone/utils": "^10.18.0",
-    "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
-    "next": "16.0.5",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "next": "16.0.7",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@storybook/nextjs-vite": "^10.1.2",
@@ -25,7 +23,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.5",
+    "eslint-config-next": "16.0.7",
     "eslint-plugin-storybook": "^10.1.2",
     "storybook": "^10.1.2",
     "storybook-css-modules": "^1.0.8",
