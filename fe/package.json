@@ -11,20 +11,23 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.13.0",
     "next": "16.0.5",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
   "devDependencies": {
+    "@storybook/nextjs-vite": "^10.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.5",
-    "typescript": "^5",
+    "eslint-plugin-storybook": "^10.1.2",
     "storybook": "^10.1.2",
-    "@storybook/nextjs-vite": "^10.1.2",
-    "vite": "^7.2.4",
-    "eslint-plugin-storybook": "^10.1.2"
+    "storybook-css-modules": "^1.0.8",
+    "typescript": "^5",
+    "vite": "^7.2.4"
   }
 }
